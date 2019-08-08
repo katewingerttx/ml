@@ -403,19 +403,19 @@ class NeuralNetwork:
 
 def main():
     # Variables to determine by trial and error: 
-    sizeRollingWindow = 2 # number of monthly datapoints used for predictions
     numHid = 31 # number of neurons in hidden layer
-    sizeTestData = 10 # choose how many rows of data will used for testing and not training
     maxEpochs = 1000 # number of interations
     learnRate = .01 # how quickly the program trains
     
+    sizeRollingWindow = 2 # number of monthly datapoints used for predictions
     numIn = (sizeRollingWindow*2)+14 # number of inputs
     numOut = 1 # number of outputs (predict next mileage number)
     
 #    print("\nBegin time series with raw mileage data ")
     mileageData = getMileageData(numIn, sizeRollingWindow)
     lenData = len(mileageData)
-    
+
+    sizeTestData = 10 # choose how many rows of data will used for testing and not training
     trainMileageData = mileageData[0:(lenData-sizeRollingWindow-sizeTestData),:] # split data into train and test
     testMileageData = mileageData[(lenData-sizeRollingWindow-sizeTestData):lenData-sizeRollingWindow,:]
     lenTestData = len(testMileageData)
